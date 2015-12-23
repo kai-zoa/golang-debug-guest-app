@@ -1,0 +1,17 @@
+debugger:
+  container_name: my_debugger
+  build: debugger
+  tty: true
+  volumes:
+    - ./bin:/go/bin
+  links:
+    - runner:runner
+runner:
+  container_name: my_runner
+  build: runner
+  tty: true
+  ports:
+    - "9091:9091"
+  volumes:
+    - .:/go/src/github.com/kai-zoa/golang-debug-guest-app
+    - ./bin:/go/bin
